@@ -50,6 +50,9 @@ You can install these packages using the following command:
     innodb_support_xa=ON
 ```
 
+If we get an error message saying that innodb_support_xa is an `unknown variable`, it is possible that your MySQL server does not support this variable.
+In this case, you can check the documentation for your version of MySQL to see if it is supported, and if so, how to enable it.
+
 For more information on how to use XA transactions in MySQL, please see the MySQL documentation.
 
 Test the `XA transactions` by creating a new table and starting an XA transaction:
