@@ -43,7 +43,7 @@ You can install these packages using the following command:
     EXIT;
 ```
 
-4. Set the `innodb_support_xa` variable to `ON` in the MySQL configuration file `/etc/my.cnf`:
+4. Set the `innodb_support_xa` variable to `YES` in the MySQL configuration file `/etc/my.cnf`:
 
 ```bash
     [mysqld]
