@@ -37,11 +37,12 @@ You can install these packages using the following command:
     mysql -u root -p
     # From the MySQL command-line interface create a new user account and grant necessary privileges:
     CREATE USER 'xa_user'@'localhost' IDENTIFIED BY 'password';
-    GRANT CREATE SESSION, CREATE PROCEDURE, CREATE XA TRANSACTION ON *.* TO 'xa_user'@'localhost';
+    -- GRANT CREATE SESSION, CREATE PROCEDURE, CREATE XA TRANSACTION ON *.* TO 'xa_user'@'localhost';
+    GRANT ALL PRIVILEGES ON *.* TO 'xa_user'@'localhost';
     FLUSH PRIVILEGES;
     EXIT;
 
-    # GRANT XA_RECOVER_ADMIN ON *.* TO 'xauser'@'localhost' IDENTIFIED BY 'password';
+    -- GRANT XA_RECOVER_ADMIN ON *.* TO 'xauser'@'localhost' IDENTIFIED BY 'password';
 ```
 
 4. Set the `innodb_support_xa` variable to `ON` in the MySQL configuration file `/etc/my.cnf`:
