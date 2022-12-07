@@ -6,6 +6,13 @@ To set up CentOS Linux release `7.9.2009` to accept `XA transactions` in MySQL, 
 
 Install the necessary packages on your system. This will include the mysql-server package, which provides the MySQL server and command-line tools, as well as the `libdbi-devel` package, which provides the development files for the DBI (Database Independent) API. You can install these packages using the following command:
 
+To check if mysql-server libdbi-devel is installed in CentOS Linux `7.9.2009`, use the yum command:
+
+```bash
+yum list installed | grep mysql-server libdbi-devel
+```
+
+
 ```bash
 sudo yum install mysql-server libdbi-devel
 ```
