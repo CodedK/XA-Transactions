@@ -50,10 +50,9 @@ You can install these packages using the following command:
     innodb_support_xa=ON
 ```
 
-If we get an error message saying that innodb_support_xa is an `unknown variable`, it is possible that your MySQL server does not support this variable.
-In this case, you can check the documentation for your version of MySQL to see if it is supported, and if so, how to enable it.
+If we get an error message saying that innodb_support_xa is an `unknown variable`, it is possible that our MySQL server does not support this variable.
 
-For more information on how to use XA transactions in MySQL, please see the MySQL documentation.
+`innodb_support_xa` is deprecated; expect it to be removed in a future MySQL release. InnoDB support for two-phase commit in XA transactions is always enabled as of `MySQL 5.7.10`. Disabling `innodb_support_xa` is no longer permitted as it makes replication unsafe and prevents performance gains associated with binary log group commit.
 
 Test the `XA transactions` by creating a new table and starting an XA transaction:
 
