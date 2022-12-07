@@ -1,6 +1,6 @@
 # XA-Transactions
 
-## A detailed guide on how to setup Centos 7.9 to accept XA Transactions in MySQL
+## A detailed guide on how to setup XA Transactions in MySQL (on Centos 7.9)
 
 To set up CentOS Linux release `7.9.2009` to accept `XA transactions` in MySQL, you will need to perform the following steps:
 
