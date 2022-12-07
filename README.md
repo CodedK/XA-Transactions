@@ -13,7 +13,7 @@ You can install these packages using the following command:
     In MySQL, only the `InnoDB engine` supports `XA transactions`. </br>
     Therefore, to use XA transactions, you must convert the tables involved in the transaction to the `InnoDB engine`.
 
-* To check if mysql-server libdbi-devel is installed in CentOS Linux `7.9.2009`, use the yum command:
+To check if `mysql-server libdbi-devel` is installed in CentOS Linux `7.9.2009`, use the yum command:
 
 ```bash
     yum list installed | grep mysql-server libdbi-devel
