@@ -21,15 +21,13 @@ You can install these packages using the following command:
     yum list installed | grep mysql-server libdbi-devel
 ```
 
-2. If the packages are not installed, install them using the following command:
+1. If the packages are not installed, install them using the following command:
 
 ```bash
-
     sudo yum install mysql-server libdbi-devel
-
 ```
 
-3. Once the packages are installed, start the MySQL server and create a user account that has the necessary privileges to create and manage `XA transactions`:
+1. Once the packages are installed, start the MySQL server and create a user account that has the necessary privileges to create and manage `XA transactions`:
 
 ```bash
     sudo systemctl start mysqld
@@ -37,7 +35,7 @@ You can install these packages using the following command:
 
 ```sql
     mysql -u root -p
-    # From the MySQL command-line interface run the following commands to create a new user account and grant it the necessary privileges:
+    # From the MySQL command-line interface create a new user account and grant necessary privileges:
     CREATE USER 'xa_user'@'localhost' IDENTIFIED BY 'password';
     GRANT CREATE SESSION, CREATE PROCEDURE, CREATE XA TRANSACTION ON *.* TO 'xa_user'@'localhost';
     FLUSH PRIVILEGES;
