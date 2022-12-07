@@ -41,8 +41,6 @@ You can install these packages using the following command:
     GRANT ALL PRIVILEGES ON *.* TO 'xa_user'@'localhost';
     FLUSH PRIVILEGES;
     EXIT;
-
-    -- GRANT XA_RECOVER_ADMIN ON *.* TO 'xauser'@'localhost' IDENTIFIED BY 'password';
 ```
 
 4. Set the `innodb_support_xa` variable to `ON` in the MySQL configuration file `/etc/my.cnf`:
