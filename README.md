@@ -9,13 +9,11 @@ You can install these packages using the following command:
 
 ### Prerequisites
 
-    * To use XA transactions in MySQL, the database engine used by the tables involved in the transaction must support XA transactions.
+* To use XA transactions in MySQL, the database engine used by the tables involved in the transaction must support XA transactions.
     In MySQL, only the `InnoDB engine` supports `XA transactions`. </br>
     Therefore, to use XA transactions, you must convert the tables involved in the transaction to the InnoDB engine.
 
-The MyISAM engine, which is the default engine in MySQL, does not support XA transactions. Therefore, if you want to use XA transactions, you must convert the tables involved in the transaction to the InnoDB engine.
-
-To check if mysql-server libdbi-devel is installed in CentOS Linux `7.9.2009`, use the yum command:
+* To check if mysql-server libdbi-devel is installed in CentOS Linux `7.9.2009`, use the yum command:
 
 ```bash
     yum list installed | grep mysql-server libdbi-devel
@@ -30,25 +28,25 @@ To check if mysql-server libdbi-devel is installed in CentOS Linux `7.9.2009`, u
 Once the packages are installed, start the MySQL server by running the following command:
 
 ```bash
-sudo systemctl start mysqld
+    sudo systemctl start mysqld
 ```
 
 Next, you will need to create a user account that has the necessary privileges to create and manage `XA transactions`.
 You can do this by running the following commands:
 
 ```bash
-mysql -u root -p
+    mysql -u root -p
 ```
 
 This will open the MySQL command-line interface. From here, you can run the following commands to create a new user account and grant it the necessary privileges:
 
 ```sql
-CREATE USER 'xa_user'@'localhost' IDENTIFIED BY 'password';
-GRANT CREATE SESSION, CREATE PROCEDURE, CREATE XA TRANSACTION ON *.* TO 'xa_user'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
+    CREATE USER 'xa_user'@'localhost' IDENTIFIED BY 'password';
+    GRANT CREATE SESSION, CREATE PROCEDURE, CREATE XA TRANSACTION ON *.* TO 'xa_user'@'localhost';
+    FLUSH PRIVILEGES;
+    EXIT;
 
-# GRANT XA_RECOVER_ADMIN ON *.* TO 'xauser'@'localhost' IDENTIFIED BY 'password';
+    # GRANT XA_RECOVER_ADMIN ON *.* TO 'xauser'@'localhost' IDENTIFIED BY 'password';
 ```
 
 Once the user is created and the necessary privileges are granted, you can connect to the MySQL server using the `xa_user` account
@@ -64,14 +62,14 @@ For more information on how to use XA transactions in MySQL, please see the MySQ
 Set the `innodb_support_xa` variable to `ON` in the MySQL configuration file `/etc/my.cnf`:
 
 ```bash
-[mysqld]
-innodb_support_xa=ON
+    [mysqld]
+    innodb_support_xa=ON
 ```
 
-Test the XA transactions by creating a new table and starting an XA transaction:
+Test the `XA transactions` by creating a new table and starting an XA transaction:
 
 ```sql
-CREATE TABLE test (id INT);
-XA START 'trx1';
-INSERT INTO test VALUES (1);
+    CREATE TABLE test (id INT);
+    XA START 'trx1';
+    INSERT INTO test VALUES (1);
 ```
