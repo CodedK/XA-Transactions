@@ -60,4 +60,5 @@ Test the `XA transactions` by creating a new table and starting an XA transactio
     CREATE TABLE test (id INT);
     XA START 'trx1';
     INSERT INTO test VALUES (1);
+    XA END 'trx1';
 ```
