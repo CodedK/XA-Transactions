@@ -77,6 +77,7 @@ Test the `XA transactions` by creating a new table and starting an XA transactio
 
 In general, we should use the `XA START`, `XA END`, `XA COMMIT`, and `XA ROLLBACK` statements as the main commands
 for working with `XA transactions`.
+
 The `XA PREPARE` and `XA RECOVER` commands may be used in certain situations,
 but are not typically used as frequently as the other commands.
 
