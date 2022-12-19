@@ -86,25 +86,25 @@ but are not typically used as frequently as the other commands.
 ## Πως διαχειριζόμαστε τα Errors
 
 Αν κάποιο από τα SQL statements που εκτελούνται αποτύχει, τότε επαναφέρουμε τη συναλλαγή χρησιμοποιώντας μπλοκς TRY-CATCH.
+
 Π.χ.:
 
-```sql
-BEGIN TRY
-  -- Start the XA transaction
-  XA START 'transaction_id'
+```php
+try {
+  // Start the XA transaction
+  $db->query("XA START 'transaction_id'");
 
-  -- Execute the SQL statements that are part of the transaction
-  UPDATE Table1 SET Column1 = 'Value1' WHERE Column2 = 'Value2'
-  UPDATE Table2 SET Column3 = 'Value3' WHERE Column4 = 'Value4'
+  // Execute the SQL statements that are part of the transaction
+  $db->query("UPDATE Table1 SET Column1 = 'Value1' WHERE Column2 = 'Value2'");
+  $db->query("UPDATE Table2 SET Column3 = 'Value3' WHERE Column4 = 'Value4'");
 
-  -- End the XA transaction and prepare it for committing or rolling back
-  XA END 'transaction_id'
+  // End the XA transaction and prepare it for committing or rolling back
+  $db->query("XA END 'transaction_id'");
 
-  -- Commit the transaction
-  XA COMMIT 'transaction_id'
-END TRY
-BEGIN CATCH
-  -- An error occurred, so roll back the transaction
-  XA ROLLBACK 'transaction_id'
-END CATCH
+  // Commit the transaction
+  $db->query("XA COMMIT 'transaction_id'");
+} catch (Exception $e) {
+  // An error occurred, so roll back the transaction
+  $db->query("XA ROLLBACK 'transaction_id'");
+}
 ```
