@@ -82,4 +82,28 @@ but are not typically used as frequently as the other commands.
 
 > XA transactions can be used with a single database, as well as multiple databases.
 
-## XA Transaction Errors
+## Πως διαχειριζόμαστε τα Errors
+
+Αν κάποιο από τα SQL statements που εκτελούνται αποτύχει, τότε επαναφέρουμε τη συναλλαγή χρησιμοποιώντας μπλοκς TRY-CATCH.
+Π.χ.:
+
+```sql
+BEGIN TRY
+  -- Start the XA transaction
+  XA START 'transaction_id'
+
+  -- Execute the SQL statements that are part of the transaction
+  UPDATE Table1 SET Column1 = 'Value1' WHERE Column2 = 'Value2'
+  UPDATE Table2 SET Column3 = 'Value3' WHERE Column4 = 'Value4'
+
+  -- End the XA transaction and prepare it for committing or rolling back
+  XA END 'transaction_id'
+
+  -- Commit the transaction
+  XA COMMIT 'transaction_id'
+END TRY
+BEGIN CATCH
+  -- An error occurred, so roll back the transaction
+  XA ROLLBACK 'transaction_id'
+END CATCH
+```
