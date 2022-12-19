@@ -63,3 +63,14 @@ Test the `XA transactions` by creating a new table and starting an XA transactio
     UPDATE test SET id = 2 WHERE id = 1;
     XA END 'trx1';
 ```
+
+## XA Transaction Statements
+
+| XA Transaction SQL Statement | Explanation |
+|------------------------------|-------------|
+| `XA START`                   | Begins a new XA transaction with the specified transaction ID. |
+| `XA END`                     | Ends the current XA transaction and prepares it for committing or rolling back. |
+| `XA PREPARE`                 | Prepares the current XA transaction for committing or rolling back. |
+| `XA COMMIT`                  | Commits the current XA transaction. |
+| `XA ROLLBACK`                | Rolls back the current XA transaction. |
+| `XA RECOVER`                 | Retrieves a list of prepared XA transactions that are currently in progress. |
