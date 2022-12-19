@@ -54,7 +54,7 @@ If we get an error message saying that innodb_support_xa is an `unknown variable
 
 `innodb_support_xa` is deprecated; expect it to be removed in a future MySQL release. InnoDB support for two-phase commit in XA transactions is always enabled as of `MySQL 5.7.10`. Disabling `innodb_support_xa` is no longer permitted as it makes replication unsafe and prevents performance gains associated with binary log group commit.
 
-Test the `XA transactions` by creating a new table and starting an XA transaction:
+Test the `XA transactions` by creating a new table and starting an XA transaction (stupid basic example follows):
 
 ```sql
     CREATE TABLE test (id INT);
