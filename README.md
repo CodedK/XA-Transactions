@@ -108,3 +108,55 @@ try {
   $db->query("XA ROLLBACK 'transaction_id'");
 }
 ```
+
+
+```php
+// Start the XA transaction
+$result = $db->query("XA START 'transaction_id'");
+
+if (!$result) {
+  // An error occurred, so roll back the transaction
+  $db->query("XA ROLLBACK 'transaction_id'");
+  // Handle the error
+  handleError($db->errno, $db->error);
+}
+
+// Execute the SQL statements that are part of the transaction
+$result = $db->query("UPDATE Table1 SET Column1 = 'Value1' WHERE Column2 = 'Value2'");
+
+if (!$result) {
+  // An error occurred, so roll back the transaction
+  $db->query("XA ROLLBACK 'transaction_id'");
+  // Handle the error
+  handleError($db->errno, $db->error);
+}
+
+$result = $db->query("UPDATE Table2 SET Column3 = 'Value3' WHERE Column4 = 'Value4'");
+
+if (!$result) {
+  // An error occurred, so roll back the transaction
+  $db->query("XA ROLLBACK 'transaction_id'");
+  // Handle the error
+  handleError($db->errno, $db->error);
+}
+
+// End the XA transaction and prepare it for committing or rolling back
+$result = $db->query("XA END 'transaction_id'");
+
+if (!$result) {
+  // An error occurred, so roll back the transaction
+  $db->query("XA ROLLBACK 'transaction_id'");
+  // Handle the error
+  handleError($db->errno, $db->error);
+}
+
+// Commit the transaction
+$result = $db->query("XA COMMIT 'transaction_id'");
+
+if (!$result) {
+  // An error occurred, so roll back the transaction
+  $db->query("XA ROLLBACK 'transaction_id'");
+  // Handle the error
+  handleError($db->errno, $db->error);
+}
+```
