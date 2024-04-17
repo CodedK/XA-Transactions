@@ -44,7 +44,8 @@ sql
     EXIT;
 ```
 
-3. Ensure `innodb_support_xa` is enabled. Set the `innodb_support_xa` variable to `YES` in the MySQL configuration file `/etc/my.cnf`. (Note: As of MySQL 5.7.10, this is always on and cannot be disabled)
+3. Ensure `innodb_support_xa` is enabled. Set the `innodb_support_xa` variable to `YES`.
+In the MySQL configuration file `/etc/my.cnf`. (Note: As of `MySQL 5.7.10`, this is always on and cannot be disabled as it makes replication unsafe and prevents performance gains associated with binary log group commit.)
 
 ```bash
     [mysqld]
@@ -52,9 +53,9 @@ sql
 ```
 If `innodb_support_xa` shows as an unknown variable, your MySQL version might not need this setting as it's deprecated.
 
-InnoDB support for two-phase commit in XA transactions is always enabled as of `MySQL 5.7.10`. Disabling `innodb_support_xa` is no longer permitted as it makes replication unsafe and prevents performance gains associated with binary log group commit.
+### Testing
 
-Test the `XA transactions` by creating a new table and starting an XA transaction (stupid basic example follows):
+Run a basic `XA transaction` to confirm the setup:
 
 ```sql
     CREATE TABLE test (id INT);
